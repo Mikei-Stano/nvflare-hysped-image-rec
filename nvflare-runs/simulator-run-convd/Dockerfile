@@ -27,7 +27,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1 &&
 # Install pip for Python 3.8
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python
 # Install the specified Python packages
-RUN pip install --ignore-installed nvflare~=2.5.0rc tensorflow[and-cuda] jupyterlab pandas torch
+RUN pip install --ignore-installed codecarbon nvflare~=2.5.0rc tensorflow[and-cuda] jupyterlab pandas torch wandb
 
 # Create a workspace directory
 WORKDIR /workspace
