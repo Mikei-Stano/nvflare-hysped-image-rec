@@ -1,6 +1,7 @@
 # CUSTOM: ignoring csvs
 *.csv
 **/*.zip
+wandb
 
 *.bundle.*
 lib/
