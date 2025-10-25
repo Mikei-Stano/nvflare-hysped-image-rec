@@ -1,0 +1,7 @@
+{
+  "name": "HySpedImageRec",
+  "description": "Image recognition piece built on NVFlare/HySped.",
+  "tags": ["nvflare", "hysped", "image-recognition"],
+  "requirements": { "cpu": 0.5, "memory": "1Gi" },
+  "dependency_group": 0
+}

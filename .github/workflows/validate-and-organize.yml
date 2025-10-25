@@ -1,0 +1,47 @@
+name: Domino Pieces - Validate & Release
+
+on:
+  push:
+    paths:
+      - "config.toml"
+      - "pieces/**"
+      - "dependencies/**"
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install validator deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install tomli
+
+      - name: Read VERSION from config.toml
+        id: ver
+        run: |
+          python - <<'PY'
+          import tomllib
+          with open("config.toml","rb") as f:
+              cfg = tomllib.load(f)
+          v = cfg.get("VERSION","0.0.0").strip()
+          print(f"::set-output name=version::{v}")
+          PY
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.ver.outputs.version }}
+          name: ${{ steps.ver.outputs.version }}
+          body: "Automated release for Domino Pieces"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

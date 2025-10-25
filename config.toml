@@ -1,0 +1,4 @@
+REGISTRY_NAME = "Mikei-Stano"
+REPOSITORY_NAME = "nvflare-hysped-image-rec"
+REPOSITORY_LABEL = "NVFlare HySped Image Recognition Pieces"
+VERSION = "0.1.0"
